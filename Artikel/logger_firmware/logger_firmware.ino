@@ -69,14 +69,15 @@ void loop() {
   }
 
   //Post Data
-  postData = "h=" + String(h) + "&t=" + String(t);
+  postData = "t=" + String(t) + "&h=" + String(h);
   
-  http.begin(wificlient, "http://192.168.1.29/DHTlogger/DHTlogger.php");              //Specify request destination
+  http.begin(wificlient, "http://192.168.1.29/DHTserver/guest/kegiatan");              //Specify request destination
   http.addHeader("Content-Type", "application/x-www-form-urlencoded");    //Specify content-type header
 
   int httpCode = http.POST(postData);   //Send the request
   String payload = http.getString();    //Get the response payload
 
+  Serial.println(postData);
   Serial.println(httpCode);   //Print HTTP return code
   Serial.println(payload);    //Print request response payload
 
